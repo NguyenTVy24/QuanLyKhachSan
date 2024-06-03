@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Integration</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+</head>
+<body>
+    <h1>MetaMask Integration Example</h1>
+
+    <button id="connectButton">Connect to MetaMask</button>
+    <button id="disconnectButton" style="display: none;">Disconnect</button>
+
+    <script>
+        let accounts;
+
+        async function connect() {
+            try {
+                // Request account access if needed
+                accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                console.log('Connected to MetaMask');
+                updateButtons();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        function disconnect() {
+            accounts = undefined;
+            console.log('Disconnected from MetaMask');
+            updateButtons();
+        }
+
+        function updateButtons() {
+            const connectButton = document.getElementById('connectButton');
+            const disconnectButton = document.getElementById('disconnectButton');
+
+            if (accounts) {
+                connectButton.style.display = 'none';
+                disconnectButton.style.display = 'inline-block';
+            } else {
+                connectButton.style.display = 'inline-block';
+                disconnectButton.style.display = 'none';
+            }
+        }
+
+        // Check if MetaMask is installed
+        if (typeof window.ethereum !== 'undefined') {
+            const ethereum = window.ethereum;
+            const web3 = new Web3(ethereum);
+
+            // Enable Metamask
+            document.getElementById('connectButton').addEventListener('click', connect);
+            document.getElementById('disconnectButton').addEventListener('click', disconnect);
+
+            // Listen for account changes
+            ethereum.on('accountsChanged', (newAccounts) => {
+                accounts = newAccounts.length > 0 ? newAccounts : undefined;
+                if (accounts) {
+                    console.log('Account changed:', accounts[0]);
+                } else {
+                    console.log('MetaMask locked or account disconnected');
+                }
+                updateButtons();
+            });
+        } else {
+            console.error('MetaMask not installed');
+        }
+    </script>
+</body>
+</html>

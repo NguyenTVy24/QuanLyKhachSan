@@ -1,0 +1,32 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block mainview %}
+	<div>
+		<video class="video-banner"  src="{% static "asset/dog1.mp4" %}" autoplay muted loop></video>
+		<div class="banner">
+			<div class="boxleft">
+				<h2>
+					<span>Pets</span>
+					<br>
+					<span>là để yêu</span>
+				</h2>
+			</div>
+		</div>
+		<div class="content">
+		</div>
+		<div class="grid-container">
+			<div class="grid-item">
+				<video src="{% static "asset/doglist.mp4 " %}" autoplay muted loop></video>
+				<h2>Dogs</h2>
+			</div>
+			<div class="grid-item">
+				<video src="{% static "asset/doglist.mp4 " %}" autoplay muted loop></video>
+				<h2>Cats</h2>
+			</div>
+			<div class="grid-item">
+				<video src="{% static "asset/doglist.mp4 " %}" autoplay muted loop></video>
+				<h2>Orther</h2>
+			</div>
+		</div>
+	</div>
+{%endblock mainview %}

@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;;
+}
+.wrapper{
+    width: 100%;
+    
+}
+.header{
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    height: 10%;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0%;
+    z-index: 10;
+}
+.logo img{
+    height: 100px;
+}
+.menu{
+    list-style: none;
+    display: flex;
+}
+.menu .item{
+    margin: 0px 25px;
+}
+.menu button{
+    margin: 0px 25px;
+    padding: 0px 15px;
+    border: 2px solid;
+    font-size: 2vh;
+    border-radius: 15px;
+    background: transparent;
+}
+.menu button:hover{
+    background: #81818154;
+}
+.menu .item a{
+    color: rgb(34, 34, 34);
+    text-decoration: none;
+    font-size: 3vh;
+}
+.menu .item a:hover{
+    text-decoration: underline;
+}
+.video-banner{
+    width: 100%;
+    position: relative;
+    z-index: -10;
+}
+.banner{
+    top: 0%;
+    width: 100%;
+    height: 120vh;
+    background: #0000008e;
+    display: flex;
+    padding: 200px 10%;
+    position: absolute;
+}
+.banner .boxleft{
+    width: 50%;
+}
+.banner .boxleft h2{
+    font-size: 5cqi;
+    color: #fff;
+    border: #00000000;
+}
+.content{
+    width: 100%;
+    padding: 50px 100px;
+    color: #fff;
+    text-align: justify;
+    background: #313131;
+    position: relative;
+}
+.grid-container{
+    position: relative;
+    z-index: 0;
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.grid-container .grid-item{
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    
+
+}
+.grid-container .grid-item video{
+    position: absolute;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+}
+.grid-container .grid-item h2{
+    padding: 7cqi 0;
+    text-align: center;
+    position: relative;
+    color: #fff;
+    font-size: 3cqi;
+    background: rgba(0, 0, 0, 0.596);
+}
+.grid-container .grid-item h2:hover{
+    color: #ffffff00;
+    background: rgba(0, 0, 0, 0.075);
+}
+
+
+
+.viewPets{
+    width: 50%;
+    
+}
+.viewPets .imagePet{
+    border-radius: 25px;
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    top: 15%;
+    left: 5%;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.616);
+}
+.viewPets .viewimfomation .infomationtable{
+    position: absolute;
+    background: rgba(255, 255, 255, .1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.479);
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-right: 2px solid rgba(255, 255, 255, .2);
+    border-bottom: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(10px);
+    height: 60%;
+    width: 45%;
+    top: 16%;
+    left: 49.5%;
+    text-align: center;
+}
+.viewPets .viewimfomation .infomationtable left{
+    background: #313131;
+}
+.viewPets .viewimfomation .listPets{
+    background: transparent;
+    position: absolute;
+    display: flex;
+    height: 130px;
+    width: 48.2%;
+    left: 48%;
+    gap: 5px;
+    top: 80%;
+    list-style: none;
+    overflow: auto;
+    white-space: nowrap;
+}
+.viewPets .viewimfomation .listPets button{
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.479);
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    height: 100px;
+    width: 200px;
+    text-align: center;
+}
+.viewPets .viewimfomation .listPets button .fiter{
+    position: absolute;
+    width: 100%;
+    background: #3838389a;
+    border-radius: 20px;
+    z-index: 2;
+}
+.viewPets .viewimfomation .listPets button img{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+.viewPets .viewimfomation .listPets button p{
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    z-index: 2;
+    font-size: 1.5cqi;
+    border-radius: 20px;
+    top: 35%;
+}
+
+.backgrond{
+    width: 100%;
+    height: 100vh;
+}
+.viewPets .viewimfomation .listPets button:hover .fiter{
+    background: #00000000;
+}
+.viewPets .viewimfomation .listPets button:hover p{
+    color: #000000;
+}
