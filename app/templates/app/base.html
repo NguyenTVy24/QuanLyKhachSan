@@ -1,142 +1,171 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{% static 'style.css' %}">
-	
-	<script src="{% static "logic.js" %}"></script>
-  
-	<title>PetsCheck</title>
-	
+    <meta charset="utf-8">
+    <title>PET SHOP - Pet Shop Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'asset/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
+
 <body>
-	<div class="wrapper">
-		<div class="header">
-			<a href="" class="logo">
-				<img src="{% static "asset/logo.png" %}" alt="">
-			</a>
-			<nav class="menu">
-				<div class="item">
-					<a href="/">Home</a>
-				</div>
-				<div class="item">
-					<a href="#" id="gotoPets">Pets</a>
-				</div>
-				<button class="item" id="connectButton" type="submit">
-					Connected Wallet
-				</button>
-			</nav>
-		</div>
-		<!--mainview--> 
-    {% block mainview %}{%endblock mainview %}
-    {% block Pets %}{%endblock Pets %}
-	<script>
-		let accounts;
-		var walletAddress;
-		var isconnect = false;
-		const connectButton = document.getElementById('connectButton');
-		window.addEventListener('load', function() {
-			if (typeof window.ethereum !== 'undefined' && window !== 'undefined') {
-                window.ethereum.request({ method: 'eth_requestAccounts' })
-                .then(accounts => {
-                    const userAddress = accounts[0];
-                    connectButton.textContent = "Connected: "+ accounts[0].substring(0,6) + "..."; 
-                    isconnect = true;
-					          walletAddress = accounts[0];
-                    
-                    /*var dataToSend = {
-                      key1: accounts[0],
-                      // Thêm các trường dữ liệu khác nếu cần
-                    };
-                    $.ajax({
-                      type: 'POST',
-                      url: '/your-django-endpoint/',
-                      contentType: 'application/json; charset=utf-8',
-                      data: JSON.stringify(dataToSend),
-                      success: function(response) {
-                          console.log('Response from Django:', response);
-                          // Xử lý phản hồi từ server nếu cần
-                      },
-                      error: function(error) {
-                          console.error('Error sending request to Django:', error);
-                      }
-                    });*/
-                })
-                .catch(error => {
-                    console.error('Error getting user accounts:', error);
-                });
-        }
-		});
-		document.getElementById('gotoPets').addEventListener('click', function(event) {
-			// Ngăn chặn chuyển hướng trang mặc định
-			event.preventDefault();
-		
-			// Lấy giá trị biến JavaScript
-			var myVariable = walletAddress;
-		
-			// Cập nhật đường dẫn URL với tham số truy vấn
-			var newUrl = '/Pets.HTML?myVariable=' + encodeURIComponent(myVariable);
-		
-			// Chuyển hướng trang
-			window.location.href = newUrl;
-		});
-		document.getElementById('connectButton').addEventListener('click', connect);
-		function updateButtons() {
-			if (accounts) {
-				connectButton.textContent = "Connected: "+ walletAddress.substring(0,6) + "..."; 
-				isconnect = true;
-			} else {
-				connectButton.textContent = "Connected Wallet";
-				isconnect = false;
-			}
-		}
-		async function connect() {
-		  if(!isconnect){
-			try {
-				// Request account access if needed
-				accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-				walletAddress = accounts[0];
-				updateButtons();
-				sendPostRequest(walletAddress);
-			} catch (error) {
-				
-			}
-		  }else{
-			
-		  }
-		}
-    
-    //Pets
-    
-    //Pets
-    
-		// Check if MetaMask is installed
-		if (window.ethereum) {
-			// Đăng ký sự kiện cho việc thay đổi tài khoản
-			window.ethereum.on('accountsChanged', function (Accounts) {
-			  if (Accounts.length > 0) {
-				// MetaMask đã kết nối và có ít nhất một địa chỉ tài khoản
-				console.log('MetaMask connected:', Accounts[0]);
-				accounts = Accounts;
-					
-			  } else {
-				// MetaMask đã ngắt kết nối
-				console.log('MetaMask disconnected');
-				accounts = false;
-				updateButtons();
-			  }
-			});
-			// Đăng ký sự kiện cho việc thay đổi chuỗi (blockchain)
-			window.ethereum.on('chainChanged', function (chainId) {
-			  // Xử lý khi chuỗi thay đổi
-			  console.log('Chain changed:', chainId);
-			});
-		} else {
-			// MetaMask không được hỗ trợ hoặc không cài đặt
-			console.log('MetaMask not supported');
-		}
-	</script>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+        <a href="index.html" class="navbar-brand ms-lg-5">
+            <h1 class="m-0 text-uppercase text-dark"><i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Shop</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="service.html" class="nav-item nav-link">Service</a>
+                <a href="product.html" class="nav-item nav-link">Product</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="price.html" class="dropdown-item">Pricing Plan</a>
+                        <a href="team.html" class="dropdown-item">The Team</a>
+                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                        <a href="blog.html" class="dropdown-item">Blog Grid</a>
+                        <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                    </div>
+                </div>
+                <a href="contact/" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contact <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- index -->
+    {% block hero_start %}{% endblock hero_start %}
+    {% block video_modal_fade %}{% endblock video_modal_fade %}
+    {% block about_start %}{% endblock about_start %}
+    {% block services_start %}{% endblock services_start %}
+    {% block products_start %}{% endblock products_start %}
+    {% block offer_start %}{% endblock offer_start %}
+    {% block pricing_plan_start %}{% endblock pricing_plan_start %}
+    {% block team_start %}{% endblock team_start %}
+    {% block testimonial_start %}{% endblock testimonial_start %}
+    {% block blog_start %}{% endblock blog_start %}
+    <!-- end index -->
+
+    <!-- contact -->
+    {% block contact_start %}{% endblock contact_start %}
+    <!-- end contact -->
+    <div class="container-fluid bg-light mt-5 py-5">
+        <div class="container pt-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Get In Touch</h5>
+                    <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor</p>
+                    <p class="mb-2"><i class="bi bi-geo-alt text-primary me-2"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="bi bi-envelope-open text-primary me-2"></i>info@example.com</p>
+                    <p class="mb-0"><i class="bi bi-telephone text-primary me-2"></i>+012 345 67890</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Quick Links</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                        <a class="text-body" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Popular Links</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The Team</a>
+                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                        <a class="text-body" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Newsletter</h5>
+                    <form action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control p-3" placeholder="Your Email">
+                            <button class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                    <h6 class="text-uppercase mt-4 mb-3">Follow Us</h6>
+                    <div class="d-flex">
+                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                        <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-12 text-center text-body">
+                    <a class="text-body" href="">Terms & Conditions</a>
+                    <span class="mx-1">|</span>
+                    <a class="text-body" href="">Privacy Policy</a>
+                    <span class="mx-1">|</span>
+                    <a class="text-body" href="">Customer Support</a>
+                    <span class="mx-1">|</span>
+                    <a class="text-body" href="">Payments</a>
+                    <span class="mx-1">|</span>
+                    <a class="text-body" href="">Help</a>
+                    <span class="mx-1">|</span>
+                    <a class="text-body" href="">FAQs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white-50 py-4">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-white" href="#">Your Site Name</a>. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>

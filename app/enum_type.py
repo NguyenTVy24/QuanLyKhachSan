@@ -18,3 +18,8 @@ class SystemRoleEnum(EnumType):
     USER = 'USER'
     ADMIN = 'ADMIN'
     SUPER_ADMIN = 'SUPER_ADMIN'
+
+
+class TypeEmailEnum(EnumType):
+    REGISTER = "REGISTER"
+    RESET_PASSWORD = "RESET_PASSWORD"
