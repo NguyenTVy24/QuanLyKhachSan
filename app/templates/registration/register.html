@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+        .register-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 300px;
+            text-align: center;
+        }
+        .register-container h2 {
+            margin-bottom: 20px;
+        }
+        .register-container input[type="email"],
+        .register-container input[type="text"],
+        .register-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .register-container button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .register-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Đăng ký</h2>
+        <form method="POST" action="{% url 'register_user' %}">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="username" placeholder="Tên người dùng" required>
+            <input type="password" name="password1" placeholder="Mật khẩu" required>
+            <input type="password" name="password2" placeholder="Xác nhận mật khẩu" required>
+            <button type="submit">Đăng ký</button>
+        </form>
+        <form method="POST" action="{% url 'resend_token' %}">
+            {% csrf_token %}
+            <button type="submit">Gửi lại mã xác nhận</button>
+        </form>
+    </div>
+</body>
+</html>
